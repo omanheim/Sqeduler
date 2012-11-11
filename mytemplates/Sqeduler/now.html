@@ -1,0 +1,11 @@
+<h1>Classes going on now ({{ time }}):</h1>
+
+<ul>
+{% for course in courselist %}
+   {% if course.starttime < time and course.endtime > time %}
+	<li> {{ course.title }} </li>
+   {% endif %}
+{% endfor %}
+</ul>
+
+<a href="/Sqeduler/">Back</a>

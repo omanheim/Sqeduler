@@ -1,0 +1,11 @@
+<h1>Classes today ({{ fullday }}):</h1>
+
+<ul>
+{% for course in courselist %}
+   {% if course.daysint|divisibleby:day %}
+	<li> {{ course.title }} </li>
+   {% endif %}
+{% endfor %}
+</ul>
+
+<a href="/Sqeduler/">Back</a>

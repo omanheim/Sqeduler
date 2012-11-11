@@ -1,0 +1,17 @@
+<h1>Who's in class right now?</h1>
+
+<ul>
+{% for course in courselist %}
+   {% if course.daysint|divisibleby:day %}
+   {% if course.starttime < time and course.endtime > time %}
+	{% for e in enrollmentlist %}
+	   {% if e.id == course.id %} 
+		<li> {{ e.fname }} is in {{ course.title }} </li>
+	   {% endif %}
+	{% endfor %}
+   {% endif %}
+   {% endif %}
+{% endfor %}
+</ul>
+
+<a href="/Sqeduler/">Back</a>
