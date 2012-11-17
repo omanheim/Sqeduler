@@ -1,11 +1,26 @@
-<h1>Classes today ({{ fullday }}):</h1>
+<!DOCTYPE html>
+<html>
+   <head>
+      <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}stylez.css"/>
+   </head>
+   <body>	   
+      <h2 id="banner">Sqeduler</h2>
+      <h1>Classes today ({{ fullday }}):</h1>
+      <ul>
+      {% for course in courselist %}
+         {% if course.daysint|divisibleby:day %}
+            {% for e in enrollmentlist %}
+               {% if e.id == course.id %}
+                  <li>{{ e.fname }} <b>has</b> 
+               {% endif %}
+            {% endfor %}
+            {{ course.title }} ({{ course.courseid }}) <b>from</b> {{ course.starttime }}-{{ course.endtime }}</li>
+         {% endif %}
+      {% endfor %}
+   </ul>
 
-<ul>
-{% for course in courselist %}
-   {% if course.daysint|divisibleby:day %}
-	<li> {{ course.title }} </li>
-   {% endif %}
-{% endfor %}
-</ul>
-
-<a href="/Sqeduler/">Back</a>
+   <div>
+      <a href="/Sqeduler/">Back</a>
+   </div>
+   <body>
+</html>

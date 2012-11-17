@@ -1,17 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}stylez.css"/>
+</head>
+<body>
+<h2 id="banner">Sqeduler</h2>
 <h1>Who's in class right now?</h1>
-
 <ul>
 {% for course in courselist %}
-   {% if course.daysint|divisibleby:day %}
-   {% if course.starttime < time and course.endtime > time %}
-	{% for e in enrollmentlist %}
-	   {% if e.id == course.id %} 
-		<li> {{ e.fname }} is in {{ course.title }} </li>
-	   {% endif %}
-	{% endfor %}
-   {% endif %}
-   {% endif %}
+{% if course.daysint|divisibleby:day %}
+{% if course.starttime < time and course.endtime > time %}			{% for e in enrollmentlist %}
+{% if e.id == course.id %} 
+<li><span style="color:brown">{{ e.fname }}</span> is in <a href="/Sqeduler/{{ course.courseid }}/{{ course.section }}/{{ course.id }}">{{ course.title }}<a> </li>
+{% endif %}
+{% endfor %}
+{% endif %}
+{% endif %}
 {% endfor %}
 </ul>
-
+<div>
 <a href="/Sqeduler/">Back</a>
+</div>
+</body>
+</html>

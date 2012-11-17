@@ -1,11 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}stylez.css"/>
+</head>
+<body>
+<h2 id="banner">Sqeduler</h2>
 <h1>{{ fullday }} classes:</h1>
 
 <ul>
 {% for course in courselist %}
    {% if course.daysint|divisibleby:day %}
-	<li> {{ course.title }} </li>
+	<li>{{ course.title }}</li>
    {% endif %}
 {% endfor %}
 </ul>
-
+<div>
 <a href="/Sqeduler">Back</a>
+</div>
+</body>
+</html>

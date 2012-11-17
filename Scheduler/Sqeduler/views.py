@@ -45,23 +45,27 @@ def dayschedule(request, day):
 	dict = {'day':nday, 'courselist': courselist, 'fullday': fullday}
 	return render(request, 'Sqeduler/givenday.html', dict)
 
-def detail(request, course_id, id):
-	course = get_object_or_404(Course, pk=id)
-	dict = {'c_id': course.courseid, 'c_title': course.title, 'c_days': course.days, 'c_stime': course.starttime, 'c_etime': course.endtime}
+def detail(request, course_id, section, id):
+	course = get_object_or_404(Course, id=id, courseid=course_id, section=section)
+	dict = {'c_id': course.courseid, 'c_title': course.title, 'c_days': course.days, 'c_stime': course.starttime, 'c_etime': course.endtime, 'c_section':course.section}
 	return render(request, 'Sqeduler/detail.html', dict) 
 
 def today(request):
 	day = datetime.datetime.today().weekday()
 	fullday = write_out_day(day)
 	day = convert_day(day)
-	courselist = Course.objects.order_by('days','starttime')
-	dict = {'day':day, 'courselist': courselist, 'fullday': fullday}
+	courselist = Course.objects.order_by('starttime')
+	enrollmentlist = Enrollment.objects.order_by('fname')
+	dict = {'day':day, 'courselist': courselist, 'fullday': fullday, 'enrollmentlist':enrollmentlist}
 	return render(request, 'Sqeduler/today.html', dict)
 
 def now(request):
 	time = datetime.datetime.today().time()
+	day = datetime.datetime.today().weekday()
+	fullday = write_out_day(day)
+	day = convert_day(day)
 	courselist = Course.objects.order_by('days','starttime')
-	dict = {'courselist': courselist, 'time': time}
+	dict = {'courselist':courselist,'time':time,'day':day,'fullday':fullday}
 	return render(request, 'Sqeduler/now.html', dict)
 
 def whoswhere(request):

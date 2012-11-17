@@ -1,6 +1,16 @@
-<p><b>Course title:</b> {{ c_title }}</p>
-<p><b>Course number:</b> {{ c_id }}</p>
-<p><b>Days:</b> {{ c_days }}</p>
-<p><b>Time:</b> {{ c_stime }} - {{ c_etime }}</p>
-
-<a href=/Sqeduler/>Back</a>
+<!DOCTYPE html>
+<html>
+   <head>
+	<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}stylez.css"/>
+   </head>
+   <body>
+	<h2 id="banner">Sqeduler</h2>
+	<p><b>Course title:</b> {{ c_title }}</p>
+	<p><b>Course number:</b> {{ c_id }} - {{ c_section }}</p>
+	<p><b>Days:</b> {{ c_days }}</p>
+	<p><b>Time:</b> {{ c_stime }} - {{ c_etime }}</p>
+   <div>
+	<a href=/Sqeduler/>Back</a>
+   </div>
+   </body>
+</html>

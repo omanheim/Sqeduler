@@ -1,14 +1,25 @@
-{% if courselist %}
-   <h1>Course listing:</h1>
-   <ul>
-   {% for course in courselist %}
-      <li><a href="/Sqeduler/{{ course.courseid }}/{{ course.id }}">{{ course.title }} ({{ course.courseid }}) - {{ course.days }}<a> </li>
-      {% endfor %}
-      </ul>
-{% else %}
-    <p>No courses available!</p>
-{% endif %}
-
-Courses going on <a href="/Sqeduler/today">today</a>
-<br>Courses going on <a href="/Sqeduler/now">now</a>
-<br>Who's <a href="/Sqeduler/whoswhere">in class</a> right now?
+<!DOCTYPE html>
+<html>
+   <head>
+      <link type="text/css" rel="stylesheet" href="{{ STATIC_URL}}stylez.css"/>
+      <title> Sqeduler </title>
+   </head>
+   <body>
+	<h2 id="banner">Sqeduler</h2>
+	<h1>Courses</h1>
+        {% if courselist %}
+	<ul>
+           {% for course in courselist %}
+           <li><a href="/Sqeduler/{{ course.courseid }}/{{ course.section }}/{{ course.id }}/">{{ course.title }} ({{ course.courseid }}) - {{ course.days }}<a> </li>
+     	   {% endfor %}
+        </ul>
+        {% else %}
+           <p>No courses available!</p>
+        {% endif %}
+	<br><div>
+		Courses going on <a href="/Sqeduler/today">today</a>
+		<br>Courses going on <a href="/Sqeduler/now">now</a>
+		<br>Who's <a href="/Sqeduler/whoswhere">in class</a> right now?
+	</div>
+   </body>
+</html>

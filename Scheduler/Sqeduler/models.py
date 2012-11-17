@@ -24,9 +24,10 @@ class User(models.Model):
 
 class Course(models.Model):
 	courseid = models.CharField('Course ID',max_length=7)
+	section = models.CharField('Section',max_length=3)
 	title = models.CharField(max_length=60)
 	days = models.CharField(max_length=7)
-	daysint = models.IntegerField(blank=True)
+	daysint = models.IntegerField(blank=True, editable=False)
 	starttime = models.TimeField('Start time')
 	endtime = models.TimeField('End time')
 	def __unicode__(self):
